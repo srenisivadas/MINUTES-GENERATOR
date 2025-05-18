@@ -1,0 +1,60 @@
+MeetScribe - Localhost Setup Guide
+==================================
+
+This file contains instructions for setting up MeetScribe on your local development machine.
+
+1. Requirements
+--------------
+- Web server with PHP 7.4+ (Apache/Nginx/XAMPP)
+- PostgreSQL database (recommended) or SQLite
+- PHP with PDO extension enabled
+- Web browser (Chrome/Firefox/Edge recommended)
+
+2. Installation Steps
+--------------------
+a) Download or clone the MeetScribe repository into your web server document root
+   - For XAMPP: C:\xampp\htdocs\MeetScribeHub
+   - For Apache: /var/www/html/MeetScribeHub
+   - For other setups: Use your web server's document root
+
+b) Database Setup:
+   - Create a PostgreSQL database named 'meetscribe'
+   - Edit local_config.php to update your database settings:
+     - Uncomment the DB_* settings and update with your credentials
+     - Use DB_TYPE_OVERRIDE = 'pgsql' for PostgreSQL
+
+c) Update Path Configuration:
+   - The application should automatically detect its installation path
+   - If you experience URL issues, run the config_update.php script once
+   - This will update any hardcoded URLs in the PHP files
+
+d) API Key (Optional):
+   - For transcription functionality, get an Assembly AI API key
+   - Add this to your local_config.php:
+     define('ASSEMBLY_API_KEY_OVERRIDE', 'your_api_key_here');
+   - Set USE_TEST_TRANSCRIPT_OVERRIDE to false to use the real API
+
+3. Testing
+---------
+- The application will use test transcript data by default (no API calls)
+- If you're experiencing database issues, check error logs
+- If you need to reset your database, you can delete and recreate it
+
+4. Common Issues
+---------------
+- Error 500: Check PHP error logs and ensure permissions are correct
+- Database connection issues: Verify PostgreSQL is running and credentials are correct
+- Path issues: Run config_update.php to fix hardcoded paths
+
+5. Scripts
+---------
+- setup_localhost.bat - Windows setup helper
+- setup_localhost.sh - Unix/Linux/Mac setup helper
+- config_update.php - Fixes path issues in PHP files
+
+6. Browser Access
+---------------
+- XAMPP: http://localhost/MeetScribeHub/
+- Custom domain: Add to hosts file and configure virtual host
+
+For more details, see the full LOCALHOST_SETUP.md documentation.
